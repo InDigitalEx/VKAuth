@@ -66,6 +66,7 @@ namespace VKAuth
                 int startIndex = message.IndexOf(": ") + 2; // Строка имеет вид ": 000000"
                 if(startIndex != -1)
                 {
+                    vk.Messages.MarkAsRead(UserID.ToString());
                     string code = message.Substring(startIndex, 6);
                     Clipboard.SetText(code);
                     MessageBox.Show("Код скопирован в буфер обмена", "",
