@@ -63,7 +63,7 @@ namespace VKAuth
                 });
                 // Копируем текст сообщения
                 string message = history.Messages.First().Text;
-                int startIndex = message.IndexOf(": ") + 2; // Строка имеет вид ": 000000"
+                int startIndex = message.LastIndexOf(": ") + 2; // Строка имеет вид ": 000000"
                 if(startIndex != -1)
                 {
                     vk.Messages.MarkAsRead(UserID.ToString());
