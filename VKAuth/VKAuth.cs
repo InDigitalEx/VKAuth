@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Linq;
-using Microsoft.Extensions.DependencyInjection;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using VkNet;
-using VkNet.Model.RequestParams;
 using VkNet.AudioBypassService.Extensions;
-using System.Threading.Tasks;
+using VkNet.Model.RequestParams;
 
 namespace VKAuth
 {
@@ -21,7 +22,7 @@ namespace VKAuth
             // Если запущен с аргументом на удаление токена
             if (args.Length > 0)
             {
-                for(int i = 0; i < args.Length; i++)
+                for (int i = 0; i < args.Length; i++)
                 {
                     if (args[i] == "-resettoken")
                     {
@@ -43,7 +44,7 @@ namespace VKAuth
                 {
                     throw new Exception("Token not found");
                 }
-                
+
                 Task t = Task.Run(() =>
                 {
                     // Авторизация по токену
@@ -67,7 +68,13 @@ namespace VKAuth
                     {
                         vk.Messages.MarkAsRead(UserID.ToString());
                         string code = message.Substring(startIndex, 6);
-                        Clipboard.SetText(code);
+
+                        // Add to clipboard
+                        Thread thread = new Thread(() => Clipboard.SetText(code));
+                        thread.SetApartmentState(ApartmentState.STA);
+                        thread.Start();
+                        thread.Join();
+
                         MessageBox.Show("Код скопирован в буфер обмена", "",
                             MessageBoxButtons.OK, MessageBoxIcon.None);
                     }

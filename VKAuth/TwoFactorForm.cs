@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace VKAuth
 {
@@ -25,7 +25,7 @@ namespace VKAuth
 
         private void TwoFactorForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if(!Success) Process.GetCurrentProcess().Kill();
+            if (!Success) Process.GetCurrentProcess().Kill();
         }
     }
 }
