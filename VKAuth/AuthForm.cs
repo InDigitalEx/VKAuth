@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using VkNet.Enums.Filters;
 using VkNet.Model;
@@ -17,32 +19,29 @@ namespace VKAuth
             if (UsernameTextBox.TextLength == 0 || PasswordTextBox.TextLength == 0) return;
             try
             {
-                // Авторизуем пользователя
-                VKAuth.vk.Authorize(new ApiAuthParams()
+                Task t = Task.Run(() =>
                 {
-                    ApplicationId = VKAuth.ApplicationID,
-                    Login = UsernameTextBox.Text,
-                    Password = PasswordTextBox.Text,
-                    Settings = Settings.All,
-                    TwoFactorAuthorization = () =>
+                    VKAuth.vk.Authorize(new ApiAuthParams()
                     {
-                        //TODO: Переделать в дочернюю форму
-                        var tfForm = new TwoFactorForm();
-                        tfForm.Location = this.Location;
-                        tfForm.ShowDialog();
-                        return tfForm.Code;
-                    }
+                        ApplicationId = VKAuth.ApplicationID,
+                        Login = UsernameTextBox.Text,
+                        Password = PasswordTextBox.Text,
+                        Settings = Settings.All,
+                        TwoFactorAuthorization = () =>
+                        {
+                            var tfForm = new TwoFactorForm();
+                            tfForm.Location = this.Location;
+                            tfForm.ShowDialog();
+                            return tfForm.Code;
+                        }
+                    });
+                    Token.Set(VKAuth.vk.Token);
                 });
-
-                // Сохраняем токен в настройки
-                Token.Set(VKAuth.vk.Token);
-
-                // Закрываем форму и выводим сообщение
+                t.Wait();
                 Close();
             }
             catch (Exception exception)
             {
-
                 MessageBox.Show((exception.Message.Length == 0 ? "Неизвестная ошибка" : exception.Message),
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -50,7 +49,6 @@ namespace VKAuth
 
         private void AuthForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Visible = false;
             if (Token.Get().Length != 0)
             {
                 MessageBox.Show("Токен получен.\nДля получения последнего кода запустите программу",
@@ -58,10 +56,9 @@ namespace VKAuth
             }
         }
 
-        private void CloseButton_Click(object sender, EventArgs e)
+        private void AuthorButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("vk.com/in_dgtl", "Автор",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Process.Start("http://vk.com/in_dgtl");
         }
     }
 }

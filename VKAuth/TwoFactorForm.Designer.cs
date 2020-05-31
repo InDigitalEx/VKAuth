@@ -52,7 +52,8 @@
             // 
             // SendButton
             // 
-            this.SendButton.Location = new System.Drawing.Point(51, 85);
+            this.SendButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SendButton.Location = new System.Drawing.Point(51, 75);
             this.SendButton.Name = "SendButton";
             this.SendButton.Size = new System.Drawing.Size(75, 23);
             this.SendButton.TabIndex = 1;
@@ -64,7 +65,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(184, 120);
+            this.ClientSize = new System.Drawing.Size(183, 115);
             this.Controls.Add(this.SendButton);
             this.Controls.Add(this.InputTextBox);
             this.Controls.Add(this.InputLabel);
@@ -73,6 +74,7 @@
             this.MaximizeBox = false;
             this.Name = "TwoFactorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TwoFactorForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

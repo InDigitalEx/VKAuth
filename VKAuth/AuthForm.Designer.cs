@@ -34,7 +34,7 @@
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.AuthButton = new System.Windows.Forms.Button();
-            this.CloseButton = new System.Windows.Forms.Button();
+            this.AuthorButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UsernameLabel
@@ -51,7 +51,7 @@
             // 
             this.UsernameTextBox.Location = new System.Drawing.Point(12, 29);
             this.UsernameTextBox.Name = "UsernameTextBox";
-            this.UsernameTextBox.Size = new System.Drawing.Size(184, 20);
+            this.UsernameTextBox.Size = new System.Drawing.Size(133, 20);
             this.UsernameTextBox.TabIndex = 0;
             // 
             // PasswordLabel
@@ -68,35 +68,35 @@
             // 
             this.PasswordTextBox.Location = new System.Drawing.Point(12, 83);
             this.PasswordTextBox.Name = "PasswordTextBox";
-            this.PasswordTextBox.Size = new System.Drawing.Size(184, 20);
+            this.PasswordTextBox.Size = new System.Drawing.Size(133, 20);
             this.PasswordTextBox.TabIndex = 1;
             this.PasswordTextBox.UseSystemPasswordChar = true;
             // 
             // AuthButton
             // 
-            this.AuthButton.Location = new System.Drawing.Point(229, 81);
+            this.AuthButton.Location = new System.Drawing.Point(163, 81);
             this.AuthButton.Name = "AuthButton";
             this.AuthButton.Size = new System.Drawing.Size(76, 22);
             this.AuthButton.TabIndex = 3;
             this.AuthButton.Text = "Войти";
             this.AuthButton.Click += new System.EventHandler(this.AuthButton_Click);
             // 
-            // CloseButton
+            // AuthorButton
             // 
-            this.CloseButton.Location = new System.Drawing.Point(230, 26);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(75, 23);
-            this.CloseButton.TabIndex = 2;
-            this.CloseButton.Text = "Автор";
-            this.CloseButton.UseVisualStyleBackColor = true;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            this.AuthorButton.Location = new System.Drawing.Point(163, 27);
+            this.AuthorButton.Name = "AuthorButton";
+            this.AuthorButton.Size = new System.Drawing.Size(75, 23);
+            this.AuthorButton.TabIndex = 2;
+            this.AuthorButton.Text = "Автор";
+            this.AuthorButton.UseVisualStyleBackColor = true;
+            this.AuthorButton.Click += new System.EventHandler(this.AuthorButton_Click);
             // 
             // AuthForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(317, 126);
-            this.Controls.Add(this.CloseButton);
+            this.ClientSize = new System.Drawing.Size(252, 126);
+            this.Controls.Add(this.AuthorButton);
             this.Controls.Add(this.AuthButton);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.PasswordLabel);
@@ -121,6 +121,6 @@
         private System.Windows.Forms.Label PasswordLabel;
         private System.Windows.Forms.TextBox PasswordTextBox;
         private System.Windows.Forms.Button AuthButton;
-        private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.Button AuthorButton;
     }
 }
